@@ -232,7 +232,7 @@ const TripDetailsInner = () => {
           </div>
         </div>
 
-        {/* Add activity form */}
+        
         <div className="space-y-4">
           <div className="bg-white/90 border border-slate-100 rounded-2xl p-4 shadow-soft">
             <h2 className="text-base font-semibold text-slate-800 mb-3">

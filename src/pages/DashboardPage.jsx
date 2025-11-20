@@ -136,7 +136,7 @@ const DashboardPageInner = () => {
         </form>
       </div>
 
-      {/* Trips grid */}
+      
       {loading ? (
         <p className="text-sm text-slate-500">Loading trips...</p>
       ) : trips.length === 0 ? (
