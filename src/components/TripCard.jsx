@@ -1,38 +1,51 @@
+
 import { Link } from "react-router-dom";
 
 const TripCard = ({ trip, onDelete }) => {
-  const start = trip.startDate ? trip.startDate.slice(0, 10) : null;
-  const end = trip.endDate ? trip.endDate.slice(0, 10) : null;
-
   return (
-    <div className="bg-white/90 border border-slate-100 rounded-2xl p-4 flex flex-col justify-between shadow-soft hover:shadow-lg hover:-translate-y-0.5 transition">
-      <div>
-        <p className="text-[11px] uppercase tracking-wide text-sky-500 mb-1">
-          {start ? "Planned trip" : "Draft"}
-        </p>
-        <h2 className="font-semibold text-lg mb-1">{trip.title}</h2>
-        <p className="text-sm text-slate-600">{trip.destination}</p>
-        {(start || end) && (
-          <p className="text-xs text-slate-400 mt-1">
-            {start} – {end}
-          </p>
-        )}
-        {trip.budget && (
-          <p className="text-xs text-slate-500 mt-1">
-            Budget: <span className="font-medium">{trip.budget}</span>
-          </p>
+    <div className="bg-white border border-slate-200 rounded-2xl p-4 flex flex-col gap-3 shadow-soft">
+      <div className="flex items-start justify-between gap-2">
+        <div>
+          <h3 className="text-base font-semibold text-slate-900">
+            {trip.title}
+          </h3>
+          <p className="text-sm text-slate-500">{trip.destination}</p>
+        </div>
+
+        {trip.budget != null && (
+          <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-700">
+            Budget: {trip.budget}
+          </span>
         )}
       </div>
-      <div className="flex justify-between items-center mt-3">
-        <Link
-          to={`/app/trips/${trip._id}`}
-          className="text-xs text-sky-600 hover:underline"
-        >
-          View details
-        </Link>
+
+      <p className="text-xs text-slate-500">
+        {trip.startDate?.substring(0, 10)} → {trip.endDate?.substring(0, 10)}
+      </p>
+
+      <div className="flex items-center justify-between mt-2">
+        <div className="flex items-center gap-4 text-xs">
+
+          
+          <Link
+            to={`/app/trips/${trip._id}`}
+            className="text-sky-500 hover:text-sky-600 font-medium"
+          >
+            View
+          </Link>
+
+         
+          <Link
+            to={`/app/trips/${trip._id}/edit`}
+            className="text-amber-500 hover:text-amber-600 font-medium"
+          >
+            Edit
+          </Link>
+        </div>
+
         <button
           onClick={() => onDelete(trip._id)}
-          className="text-xs text-rose-500 border border-rose-200 px-2 py-1 rounded-full hover:bg-rose-50"
+          className="text-xs text-red-500 hover:text-red-600 font-medium"
         >
           Delete
         </button>

@@ -105,6 +105,10 @@ const TripDetailsInner = () => {
     }
   };
 
+  const handleStartEditing = (activity) => {
+    navigate(`/app/trips/${id}/activity/${activity._id}/edit`);
+  };
+
   const handleDeleteTrip = async () => {
     try {
       await api.delete(`/api/trips/${id}`);
@@ -132,10 +136,23 @@ const TripDetailsInner = () => {
     );
   }
 
-  const totalCost = activities.reduce((sum, a) => sum + (a.price || 0), 0);
+  const totalCost = activities.reduce(
+    (sum, a) => sum + (Number(a.price) || 0),
+    0
+  );
 
   return (
     <Layout>
+    
+      <div className="mb-4">
+        <button
+          onClick={() => navigate("/app/trips")}
+          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-slate-200 text-xs text-slate-600 hover:bg-slate-50"
+        >
+          ← Back to dashboard
+        </button>
+      </div>
+
       <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div>
           <p className="text-[11px] uppercase tracking-wide text-sky-500 mb-1">
@@ -159,7 +176,6 @@ const TripDetailsInner = () => {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
-        {/* Activities list */}
         <div className="lg:col-span-2 space-y-3">
           <div className="bg-white/90 border border-slate-100 rounded-2xl p-4 shadow-soft">
             <div className="flex items-center justify-between mb-3">
@@ -180,9 +196,9 @@ const TripDetailsInner = () => {
                 {activities.map((a) => (
                   <div
                     key={a._id}
-                    className="bg-slate-50 border border-slate-100 rounded-2xl p-3 flex items-start justify-between gap-3"
+                    className="bg-white border border-slate-100 rounded-2xl p-4 flex items-start justify-between gap-4 shadow-sm hover:shadow-md transition"
                   >
-                    <div>
+                    <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <h3 className="font-medium text-sm text-slate-800">
                           {a.name}
@@ -203,24 +219,41 @@ const TripDetailsInner = () => {
                         <p className="text-xs text-slate-500 mt-1">
                           {a.price && (
                             <>
-                              Price: {a.price} {a.currency || "EUR"} •{" "}
+                              Price:{" "}
+                              <span className="font-medium">{a.price}</span>{" "}
+                              {a.currency || "EUR"} •{" "}
                             </>
                           )}
-                          {a.rating && <>Rating: {a.rating}/5 • </>}
+                          {a.rating && (
+                            <>
+                              Rating:{" "}
+                              <span className="font-medium">{a.rating}/5</span>{" "}
+                              •{" "}
+                            </>
+                          )}
                           {a.comment && <>{a.comment}</>}
                         </p>
                       )}
                     </div>
-                    <div className="flex flex-col items-end gap-2">
+
+                    <div className="flex flex-col items-end gap-2 whitespace-nowrap">
                       <button
                         onClick={() => handleToggleComplete(a)}
-                        className="text-[11px] text-emerald-700 border border-emerald-200 px-2 py-1 rounded-full hover:bg-emerald-50"
+                        className="text-[11px] text-emerald-700 border border-emerald-200 px-2 py-1 rounded-full hover:bg-emerald-50 transition"
                       >
                         {a.isCompleted ? "Mark planned" : "Mark done"}
                       </button>
+
+                      <button
+                        onClick={() => handleStartEditing(a)}
+                        className="text-[11px] text-sky-600 border border-sky-200 px-2 py-1 rounded-full hover:bg-sky-50 transition"
+                      >
+                        Edit
+                      </button>
+
                       <button
                         onClick={() => handleDeleteActivity(a._id)}
-                        className="text-[11px] text-rose-600 border border-rose-200 px-2 py-1 rounded-full hover:bg-rose-50"
+                        className="text-[11px] text-rose-600 border border-rose-200 px-2 py-1 rounded-full hover:bg-rose-50 transition"
                       >
                         Delete
                       </button>
@@ -232,7 +265,6 @@ const TripDetailsInner = () => {
           </div>
         </div>
 
-        
         <div className="space-y-4">
           <div className="bg-white/90 border border-slate-100 rounded-2xl p-4 shadow-soft">
             <h2 className="text-base font-semibold text-slate-800 mb-3">

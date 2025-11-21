@@ -4,33 +4,36 @@ import Layout from "../components/Layout.jsx";
 const features = [
   {
     title: "Trips at a glance",
-    desc: "See all your upcoming and past journeys on one clean dashboard."
+    desc: "See all your upcoming and past journeys on one clean dashboard.",
   },
   {
     title: "Activities & prices",
-    desc: "Plan what to do, how much it costs and mark what you actually did."
+    desc: "Plan what to do, how much it costs and mark what you actually did.",
   },
   {
     title: "Private by design",
-    desc: "Your trips are tied to your account only – no social network noise."
-  }
+    desc: "Your trips are tied to your account only – no social network noise.",
+  },
 ];
 
 const LandingPage = () => {
   return (
     <Layout>
-      <section className="grid md:grid-cols-2 gap-10 items-center">
+      <section className="grid gap-10 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] items-center">
+        {/* Lijeva strana – tekst */}
         <div>
-          <p className="text-xs font-semibold tracking-wide text-sky-500 uppercase mb-3">
+          <p className="text-[11px] uppercase tracking-wide text-sky-500 mb-3">
             Personal travel planner
           </p>
+
           <h1 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
             Plan your trips,{" "}
             <span className="text-sky-600">remember every moment</span>.
           </h1>
+
           <p className="text-sm md:text-base text-slate-600 mb-6 max-w-md">
-            WanderLog helps you plan your itineraries, activities and budgets in
-            one simple app. Perfect for students and devs building their first
+            WanderLog helps you keep your trips, activities and budgets in one
+            simple app. Perfect for students and devs building their first
             full-stack project.
           </p>
 
@@ -53,50 +56,58 @@ const LandingPage = () => {
             {features.map((f) => (
               <div
                 key={f.title}
-                className="bg-white/80 border border-slate-100 rounded-2xl p-3"
+                className="bg-white border border-slate-100 rounded-2xl p-3 shadow-soft"
               >
-                <p className="font-semibold text-slate-800 mb-1">{f.title}</p>
+                <h3 className="font-semibold text-slate-800 mb-1">
+                  {f.title}
+                </h3>
                 <p className="text-slate-500">{f.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
+        {/* Desna strana – demo UI / kartice */}
         <div className="relative">
-          <div className="absolute -inset-6 bg-gradient-to-tr from-sky-200/60 via-white to-emerald-100/80 rounded-3xl blur-2xl" />
+          <div className="absolute -top-4 -right-2 h-20 w-20 rounded-full bg-sky-100 blur-3xl" />
+          <div className="absolute -bottom-6 -left-4 h-24 w-24 rounded-full bg-emerald-100 blur-3xl" />
+
           <div className="relative bg-white border border-slate-100 rounded-3xl p-4 shadow-soft">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex items-center justify-between mb-3">
               <div>
-                <p className="text-xs font-medium text-slate-700">
-                  Upcoming trips
-                </p>
-                <p className="text-[11px] text-slate-400">
+                <p className="text-[11px] uppercase tracking-wide text-slate-400">
                   Example of your dashboard
+                </p>
+                <p className="text-sm font-semibold text-slate-800">
+                  Upcoming trips
                 </p>
               </div>
               <span className="text-[11px] px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
                 Demo UI
               </span>
             </div>
-            <div className="space-y-3">
-              <div className="bg-sky-50 border border-sky-100 rounded-2xl p-3">
-                <p className="text-xs font-semibold text-slate-800">
+
+            <div className="space-y-3 text-xs">
+              <div className="bg-white border border-slate-100 rounded-2xl p-3">
+                <p className="font-semibold text-slate-800">
                   Summer in Barcelona
                 </p>
                 <p className="text-[11px] text-slate-500">
                   Barcelona, Spain • Jul 10 – Jul 18
                 </p>
               </div>
-              <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-3">
-                <p className="text-xs font-semibold text-slate-800">
+
+              <div className="bg-white border border-slate-100 rounded-2xl p-3">
+                <p className="font-semibold text-slate-800">
                   Weekend in Paris
                 </p>
                 <p className="text-[11px] text-slate-500">
                   Paris, France • May 3 – May 5
                 </p>
               </div>
+
               <div className="bg-slate-50 border border-slate-100 rounded-2xl p-3">
-                <p className="text-xs font-semibold text-slate-800">
+                <p className="font-semibold text-slate-800">
                   Ski trip with friends
                 </p>
                 <p className="text-[11px] text-slate-500">

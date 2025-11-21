@@ -83,7 +83,7 @@ const DashboardPageInner = () => {
         </div>
       </div>
 
-      {/* Add trip form */}
+      
       <div className="bg-white/90 border border-slate-100 rounded-2xl p-4 mb-6 shadow-soft">
         <h2 className="text-sm font-semibold text-slate-800 mb-3">
           Add a new trip

@@ -15,10 +15,13 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="border-b border-sky-100 bg-white/70 backdrop-blur-md sticky top-0 z-30">
+    <nav className="border-b border-slate-100 bg-white/70 backdrop-blur-md sticky top-0 z-30">
       <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-        <Link to={isAuthenticated ? "/app/trips" : "/"} className="flex items-center gap-2">
-          <div className="h-9 w-9 rounded-2xl bg-gradient-to-br from-sky-400 to-emerald-400 flex items-center justify-center shadow-soft">
+        <Link
+          to={isAuthenticated ? "/app/trips" : "/"}
+          className="flex items-center gap-2"
+        >
+          <div className="h-9 w-9 rounded-2xl bg-gradient-to-br from-sky-500 to-sky-400 flex items-center justify-center shadow-soft">
             <span className="text-white font-semibold text-sm">WL</span>
           </div>
           <div className="flex flex-col leading-tight">
