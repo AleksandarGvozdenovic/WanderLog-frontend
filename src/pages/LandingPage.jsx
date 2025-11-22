@@ -20,7 +20,7 @@ const LandingPage = () => {
   return (
     <Layout>
       <section className="grid gap-10 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] items-center">
-        {/* Lijeva strana – tekst */}
+       
         <div>
           <p className="text-[11px] uppercase tracking-wide text-sky-500 mb-3">
             Personal travel planner
@@ -33,8 +33,7 @@ const LandingPage = () => {
 
           <p className="text-sm md:text-base text-slate-600 mb-6 max-w-md">
             WanderLog helps you keep your trips, activities and budgets in one
-            simple app. Perfect for students and devs building their first
-            full-stack project.
+            simple app. Start planning your next adventure today!
           </p>
 
           <div className="flex flex-wrap gap-3 mb-8">
